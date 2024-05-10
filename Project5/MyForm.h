@@ -550,6 +550,7 @@ private: System::Void toolStripMenuItem6_Click(System::Object^ sender, System::E
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+
 }
 
 
