@@ -41,7 +41,9 @@ namespace Project5 {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem1;
-	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem5;
+	protected private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem5;
+	private:
+
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem6;
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem7;
@@ -77,8 +79,9 @@ namespace Project5 {
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem15;
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem16;
 	private: System::Windows::Forms::FontDialog^ fontDialog1;
-	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
+
 	private: System::Windows::Forms::ColorDialog^ colorDialog1;
+	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 
 
 	protected:
@@ -137,8 +140,8 @@ namespace Project5 {
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->fontDialog1 = (gcnew System::Windows::Forms::FontDialog());
-			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->menuStrip1->SuspendLayout();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -174,14 +177,15 @@ namespace Project5 {
 			// toolStripMenuItem5
 			// 
 			this->toolStripMenuItem5->Name = L"toolStripMenuItem5";
-			this->toolStripMenuItem5->Size = System::Drawing::Size(269, 22);
+			this->toolStripMenuItem5->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::S));
+			this->toolStripMenuItem5->Size = System::Drawing::Size(317, 22);
 			this->toolStripMenuItem5->Text = L"&Сохранить данные таблицы в файл";
 			this->toolStripMenuItem5->Click += gcnew System::EventHandler(this, &MyForm::toolStripMenuItem5_Click);
 			// 
 			// toolStripMenuItem6
 			// 
 			this->toolStripMenuItem6->Name = L"toolStripMenuItem6";
-			this->toolStripMenuItem6->Size = System::Drawing::Size(269, 22);
+			this->toolStripMenuItem6->Size = System::Drawing::Size(317, 22);
 			this->toolStripMenuItem6->Text = L"выход";
 			this->toolStripMenuItem6->Click += gcnew System::EventHandler(this, &MyForm::toolStripMenuItem6_Click);
 			// 
@@ -413,7 +417,7 @@ namespace Project5 {
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(529, 308);
+			this->tabPage2->Size = System::Drawing::Size(507, 308);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Таблица данных промежутка";
 			// 
@@ -473,7 +477,7 @@ namespace Project5 {
 			this->tabPage3->Controls->Add(this->chart1);
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
-			this->tabPage3->Size = System::Drawing::Size(529, 288);
+			this->tabPage3->Size = System::Drawing::Size(507, 308);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"График функции на промежутке";
 			this->tabPage3->UseVisualStyleBackColor = true;
@@ -511,6 +515,10 @@ namespace Project5 {
 			this->button1->Text = L"Выход";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
+			// saveFileDialog1
+			// 
+			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::saveFileDialog1_FileOk);
 			// 
 			// MyForm
 			// 
@@ -734,9 +742,11 @@ private: System::Void toolStripMenuItem16_Click(System::Object^ sender, System::
 }
 private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::EventArgs^ e) {
 	SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog();
+	saveFileDialog1->InitialDirectory = "";
+	saveFileDialog1->Title = "Save text File";
+	saveFileDialog1->FileName = "";
 	saveFileDialog1->Filter = "Text Files|*.txt";
-	saveFileDialog1->FilterIndex = 2; saveFileDialog1 -> RestoreDirectory = true;
-	if (saveFileDialog1->ShowDialog()== System::Windows::Forms:: DialogResult::OK)
+	if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
 		StreamWriter^ pwriter = gcnew StreamWriter(saveFileDialog1->FileName);
 		for (int i = 0; i < dataGridView1->RowCount; i++) pwriter->WriteLine(dataGridView1->Rows[i]->Cells[0]->Value->ToString() + "| " + dataGridView1->Rows[i]->Cells[1]->Value->ToString());
@@ -892,6 +902,9 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox1->Focus();
 	}
+}
+private: System::Void saveFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+	
 }
 };
 }
