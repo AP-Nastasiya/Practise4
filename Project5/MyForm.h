@@ -321,7 +321,7 @@ namespace Project5 {
 			this->textBox4->Size = System::Drawing::Size(100, 20);
 			this->textBox4->TabIndex = 8;
 			this->textBox4->Text = L"4";
-			this->textBox4->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox4_TextChanged);
+			this->textBox4->Leave += gcnew System::EventHandler(this, &MyForm::textBox4_Leave);
 			// 
 			// textBox3
 			// 
@@ -330,7 +330,7 @@ namespace Project5 {
 			this->textBox3->Size = System::Drawing::Size(100, 20);
 			this->textBox3->TabIndex = 7;
 			this->textBox3->Text = L"0,36";
-			this->textBox3->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox3_TextChanged);
+			this->textBox3->Leave += gcnew System::EventHandler(this, &MyForm::textBox3_Leave);
 			// 
 			// textBox2
 			// 
@@ -339,7 +339,7 @@ namespace Project5 {
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 6;
 			this->textBox2->Text = L"7,8";
-			this->textBox2->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
+			this->textBox2->Leave += gcnew System::EventHandler(this, &MyForm::textBox2_Leave);
 			// 
 			// textBox1
 			// 
@@ -348,7 +348,7 @@ namespace Project5 {
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 5;
 			this->textBox1->Text = L"-3,2";
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
+			this->textBox1->Leave += gcnew System::EventHandler(this, &MyForm::textBox1_Leave);
 			// 
 			// label5
 			// 
@@ -462,6 +462,7 @@ namespace Project5 {
 			// 
 			this->textBox6->Location = System::Drawing::Point(354, 232);
 			this->textBox6->Name = L"textBox6";
+			this->textBox6->ReadOnly = true;
 			this->textBox6->Size = System::Drawing::Size(100, 20);
 			this->textBox6->TabIndex = 1;
 			// 
@@ -469,6 +470,7 @@ namespace Project5 {
 			// 
 			this->textBox5->Location = System::Drawing::Point(354, 168);
 			this->textBox5->Name = L"textBox5";
+			this->textBox5->ReadOnly = true;
 			this->textBox5->Size = System::Drawing::Size(100, 20);
 			this->textBox5->TabIndex = 0;
 			// 
@@ -515,10 +517,6 @@ namespace Project5 {
 			this->button1->Text = L"Выход";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
-			// 
-			// saveFileDialog1
-			// 
-			this->saveFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::saveFileDialog1_FileOk);
 			// 
 			// MyForm
 			// 
@@ -779,7 +777,8 @@ private: System::Void toolStripMenuItem12_Click(System::Object^ sender, System::
 	}
 
 }
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+private: System::Void textBox1_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox1->Text;
 	l = str->Length;
 	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
@@ -808,9 +807,8 @@ private: System::Void textBox1_TextChanged(System::Object^ sender, System::Event
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox1->Focus();
-	}
 }
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void textBox2_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox1->Text;
 	l = str->Length;
 	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
@@ -839,9 +837,8 @@ private: System::Void textBox2_TextChanged(System::Object^ sender, System::Event
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox1->Focus();
-	}
 }
-private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void textBox3_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox1->Text;
 	l = str->Length;
 	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
@@ -870,9 +867,8 @@ private: System::Void textBox3_TextChanged(System::Object^ sender, System::Event
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox1->Focus();
-	}
 }
-private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void textBox4_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox1->Text;
 	l = str->Length;
 	//èíäåêñ ñèìâîëà, ñ êîòîðûì ðàáîòàåì 
@@ -901,10 +897,6 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 		MessageBox::Show("ïàðàìåòð À íå ÿâëÿåòñÿ ÷èñëîì", "Îøèáêà ââîäà äàííûõ", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		//âîçâðàò ôîêóñà òåêñòîâîìó ïîëþ 
 		this->textBox1->Focus();
-	}
-}
-private: System::Void saveFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
-	
 }
 };
 }
